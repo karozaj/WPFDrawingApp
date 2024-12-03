@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="paint3320132" Height="450" Width="800">
     <Grid>
         <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown">
             <Canvas.Background>
@@ -16,8 +16,8 @@
         
         <ToolBarPanel>
             <ToolBar VerticalAlignment="Top" Margin="0,-1,0,0" Background="#7D8CC4">
-                <Button x:Name="btnDraw" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold"
-                        Click="btnDraw_Click" Foreground="#BEE7E8" Background="#726DA8">
+                <Button x:Name="btnDraw" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8"
+                        Click="btnDraw_Click">
                     Rysuj dowolnie
                 </Button>
                 <Button x:Name="btnPoint" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" 
@@ -28,6 +28,25 @@
                         Click="btnLine_Click" Foreground="#BEE7E8" Background="#726DA8">
                     Rysuj linie
                 </Button>
+                <Menu>
+                    <MenuItem Header="Odcinki" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8">
+                        <MenuItem x:Name="drawSegment" Header="Rysuj odcinek" Click="drawSegment_Click"/>
+                        <MenuItem x:Name="editSegment" Header="Edytuj odcinek" Click="editSegment_Click"/>
+                    </MenuItem>
+                </Menu>
+                <Menu>
+                    <MenuItem Header="Kształty" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8">
+                        <MenuItem x:Name="drawRectangle" Header="Prostokąt" Click="drawRectangle_Click"/>
+                        <MenuItem x:Name="drawPolygon" Header="Wielokąt" Click="drawPolygon_Click"/>
+                        <MenuItem x:Name="drawEllipse" Header="Elipsa" Click="drawEllipse_Click"/>
+                        <MenuItem x:Name="drawCircle" Header="Okrąg" Click="drawCircle_Click"/>
+                        <MenuItem x:Name="drawCustomShape1" Header="Trojkąt" Click="drawCustomShape1_Click"/>
+                        <MenuItem x:Name="drawCustomShape2" Header="Plus" Click="drawCustomShape2_Click"/>
+                        <MenuItem x:Name="drawCustomShape3" Header="Gwiazda" Click="drawCustomShape3_Click"/>
+                        <MenuItem x:Name="drawCustomShape4" Header="Romb" Click="drawCustomShape4_Click"/>
+                    </MenuItem>
+                </Menu>
+                
             </ToolBar>
         </ToolBarPanel>
 
