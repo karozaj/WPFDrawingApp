@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="paint3320132" Height="450" Width="800">
+        Title="bozoPaint" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Name="bozoButtonStyle" x:Key="bozoButtonStyle" TargetType="Control">
+            <Setter Property="FontFamily" Value="Courier New"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="#7D8CC4"/>
+            <Setter Property="Foreground" Value="#BEE7E8"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
-        <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown">
+        <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown" MouseRightButtonDown="paintSurface_MouseRightButtonDown">
             <Canvas.Background>
                 <SolidColorBrush Color="#BEE7E8" Opacity="1"/>
             </Canvas.Background>
@@ -16,26 +26,23 @@
         
         <ToolBarPanel>
             <ToolBar VerticalAlignment="Top" Margin="0,-1,0,0" Background="#7D8CC4">
-                <Button x:Name="btnDraw" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8"
-                        Click="btnDraw_Click">
+                <Button x:Name="btnDraw" Click="btnDraw_Click" Style="{StaticResource bozoButtonStyle}">
                     Rysuj dowolnie
                 </Button>
-                <Button x:Name="btnPoint" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" 
-                        Click="btnPoint_Click" Foreground="#BEE7E8" Background="#726DA8">
+                <Button x:Name="btnPoint" Click="btnPoint_Click" Style="{StaticResource bozoButtonStyle}">
                     Rysuj punkty
                 </Button>
-                <Button x:Name="btnLine" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold"
-                        Click="btnLine_Click" Foreground="#BEE7E8" Background="#726DA8">
+                <Button x:Name="btnLine" Click="btnLine_Click" Style="{StaticResource bozoButtonStyle}">
                     Rysuj linie
                 </Button>
                 <Menu>
-                    <MenuItem Header="Odcinki" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8">
+                    <MenuItem Header="Odcinki" Style="{StaticResource bozoButtonStyle}">
                         <MenuItem x:Name="drawSegment" Header="Rysuj odcinek" Click="drawSegment_Click"/>
                         <MenuItem x:Name="editSegment" Header="Edytuj odcinek" Click="editSegment_Click"/>
                     </MenuItem>
                 </Menu>
                 <Menu>
-                    <MenuItem Header="Kształty" FontFamily="PMingLiU-ExtB" FontSize="14" FontWeight="Bold" Foreground="#BEE7E8" Background="#726DA8">
+                    <MenuItem Header="Kształty" Style="{StaticResource bozoButtonStyle}">
                         <MenuItem x:Name="drawRectangle" Header="Prostokąt" Click="drawRectangle_Click"/>
                         <MenuItem x:Name="drawPolygon" Header="Wielokąt" Click="drawPolygon_Click"/>
                         <MenuItem x:Name="drawEllipse" Header="Elipsa" Click="drawEllipse_Click"/>
@@ -43,7 +50,7 @@
                         <MenuItem x:Name="drawCustomShape1" Header="Trojkąt" Click="drawCustomShape1_Click"/>
                         <MenuItem x:Name="drawCustomShape2" Header="Plus" Click="drawCustomShape2_Click"/>
                         <MenuItem x:Name="drawCustomShape3" Header="Gwiazda" Click="drawCustomShape3_Click"/>
-                        <MenuItem x:Name="drawCustomShape4" Header="Romb" Click="drawCustomShape4_Click"/>
+                        <MenuItem x:Name="drawCustomShape4" Header="Równoległobok" Click="drawCustomShape4_Click"/>
                     </MenuItem>
                 </Menu>
                 
