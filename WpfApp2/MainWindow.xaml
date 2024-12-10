@@ -53,7 +53,8 @@
                         <MenuItem x:Name="drawCustomShape4" Header="Równoległobok" Click="drawCustomShape4_Click"/>
                     </MenuItem>
                 </Menu>
-                
+                <Rectangle x:Name="colorPicker" Height="12" Width="12" Margin="5" Fill="Red" MouseLeftButtonDown="colorPicker_MouseLeftButtonDown"></Rectangle>
+
             </ToolBar>
         </ToolBarPanel>
 

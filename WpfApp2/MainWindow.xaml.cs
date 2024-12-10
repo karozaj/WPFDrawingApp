@@ -59,6 +59,9 @@ namespace WpfApp2
         Ellipse pickedLineP1;
         Ellipse pickedLineP2;
 
+        Color selectedColor = Color.FromRgb(255, 0, 0);
+        Rectangle pickedLineP3;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -86,7 +89,7 @@ namespace WpfApp2
             if(e.LeftButton==MouseButtonState.Pressed && drawStyle==1)
             {
                 Line line = new Line();
-                line.Stroke = SystemColors.WindowFrameBrush;
+                line.Stroke = new SolidColorBrush(selectedColor);
                 line.X1=currentPoint.X;
                 line.Y1=currentPoint.Y;
                 line.X2 = e.GetPosition(this).X;
@@ -126,7 +129,7 @@ namespace WpfApp2
                 ellipse.Height = 6;
                 Canvas.SetTop(ellipse, e.GetPosition(this).Y - ellipse.Height / 2);
                 Canvas.SetLeft(ellipse, e.GetPosition(this).X - ellipse.Width / 2);
-                ellipse.Fill= SystemColors.WindowFrameBrush;
+                ellipse.Fill= new SolidColorBrush(selectedColor);
                 paintSurface.Children.Add(ellipse);
 
             }
@@ -135,7 +138,7 @@ namespace WpfApp2
                 if (isFirstLinePointSet == false)
                 {
                     currentLine = new Line();
-                    currentLine.Stroke = SystemColors.WindowFrameBrush;
+                    currentLine.Stroke = new SolidColorBrush(selectedColor);
                     currentLine.X1 = e.GetPosition(this).X;
                     currentLine.Y1 = e.GetPosition(this).Y;
                     isFirstLinePointSet = true;
@@ -159,7 +162,7 @@ namespace WpfApp2
                             pickedLineP1.Height = 6;
                             Canvas.SetTop(pickedLineP1, pickedLine.Y1 - pickedLineP1.Height / 2);
                             Canvas.SetLeft(pickedLineP1, pickedLine.X1 - pickedLineP1.Width / 2);
-                            pickedLineP1.Fill = new SolidColorBrush(Colors.Red);
+                            pickedLineP1.Fill = new SolidColorBrush(selectedColor);
                             pickedLineP1.MouseDown += pickedLinePointSelected;
                             paintSurface.Children.Add(pickedLineP1);
 
@@ -169,7 +172,7 @@ namespace WpfApp2
                             pickedLineP2.Height = 6;
                             Canvas.SetTop(pickedLineP2, pickedLine.Y2 - pickedLineP2.Height / 2);
                             Canvas.SetLeft(pickedLineP2, pickedLine.X2 - pickedLineP2.Width / 2);
-                            pickedLineP2.Fill = new SolidColorBrush(Colors.Red);
+                            pickedLineP2.Fill = new SolidColorBrush(selectedColor);
                             pickedLineP2.MouseDown += pickedLinePointSelected;
                             paintSurface.Children.Add(pickedLineP2);
 
@@ -191,7 +194,7 @@ namespace WpfApp2
                 Canvas.SetTop(rect, e.GetPosition(this).Y-rect.Height/2);
                 Canvas.SetLeft(rect, e.GetPosition(this).X - rect.Width / 2);
 
-                Brush brushColor = new SolidColorBrush(Colors.Green);
+                Brush brushColor = new SolidColorBrush(selectedColor);
 
                 rect.Stroke = brushColor;
                 //rect.Fill = SystemColors.WindowFrameBrush;
@@ -220,7 +223,7 @@ namespace WpfApp2
                 polyPoints.Add(point6);
                 poly.Points=polyPoints;
 
-                Brush brushColor = new SolidColorBrush(Colors.Magenta);
+                Brush brushColor = new SolidColorBrush(selectedColor);
                 poly.Stroke = brushColor;
                 paintSurface.Children.Add(poly);
             }
@@ -232,7 +235,7 @@ namespace WpfApp2
                 Canvas.SetTop(elip, e.GetPosition(this).Y - elip.Height / 2);
                 Canvas.SetLeft(elip, e.GetPosition(this).X - elip.Width / 2);
 
-                Brush brushColor = new SolidColorBrush(Colors.DarkTurquoise);
+                Brush brushColor = new SolidColorBrush(selectedColor);
 
                 elip.Stroke = brushColor;
                 //rect.Fill = SystemColors.WindowFrameBrush;
@@ -246,7 +249,7 @@ namespace WpfApp2
                 Canvas.SetTop(circ, e.GetPosition(this).Y - circ.Height / 2);
                 Canvas.SetLeft(circ, e.GetPosition(this).X - circ.Width / 2);
 
-                Brush brushColor = new SolidColorBrush(Colors.OrangeRed);
+                Brush brushColor = new SolidColorBrush(selectedColor);
 
                 circ.Stroke = brushColor;
                 //rect.Fill = SystemColors.WindowFrameBrush;
@@ -269,7 +272,7 @@ namespace WpfApp2
                 polyPoints.Add(point3);
                 triangle.Points = polyPoints;
 
-                Brush brushColor = new SolidColorBrush(Colors.ForestGreen);
+                Brush brushColor = new SolidColorBrush(selectedColor);
                 triangle.Stroke = brushColor;
                 paintSurface.Children.Add(triangle);
             }
@@ -313,7 +316,7 @@ namespace WpfApp2
 
                 plus.Points = polyPoints;
 
-                Brush brushColor = new SolidColorBrush(Colors.Olive);
+                Brush brushColor = new SolidColorBrush(selectedColor);
                 plus.Stroke = brushColor;
                 paintSurface.Children.Add(plus);
             }
@@ -348,7 +351,7 @@ namespace WpfApp2
                 polyPoints.Add(point10);
                 star.Points = polyPoints;
 
-                Brush brushColor = new SolidColorBrush(Colors.DarkGoldenrod);
+                Brush brushColor = new SolidColorBrush(selectedColor);
                 star.Stroke = brushColor;
                 paintSurface.Children.Add(star);
             }
@@ -371,7 +374,7 @@ namespace WpfApp2
                 polyPoints.Add(point4);
                 parallelogram.Points = polyPoints;
 
-                Brush brushColor = new SolidColorBrush(Colors.Olive);
+                Brush brushColor = new SolidColorBrush(selectedColor);
                 parallelogram.Stroke = brushColor;
                 paintSurface.Children.Add(parallelogram);
             }
@@ -472,6 +475,12 @@ namespace WpfApp2
                 paintSurface.Children.Remove(pickedLineP1);
                 paintSurface.Children.Remove(pickedLineP2);
             }
+        }
+
+        private void colorPicker_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ColorPickerWindow colorPickerWindow = new ColorPickerWindow();
+            colorPickerWindow.Show();
         }
     }
 }
