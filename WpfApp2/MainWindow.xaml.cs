@@ -39,6 +39,7 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         DrawingManager drawingManager=new DrawingManager();
+        ColorPickerWindow colorPickerWindow;
 
         Color selectedColor = Color.FromRgb(255, 0, 0);
         Rectangle pickedLineP3;
@@ -147,8 +148,11 @@ namespace WpfApp2
 
         private void colorPicker_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ColorPickerWindow colorPickerWindow = new ColorPickerWindow();
-            colorPickerWindow.Show();
+            if (colorPickerWindow == null)
+            {
+                colorPickerWindow = new ColorPickerWindow(selectedColor);
+                colorPickerWindow.Show();
+            }
         }
 
     }

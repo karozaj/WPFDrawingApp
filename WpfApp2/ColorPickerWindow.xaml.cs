@@ -19,9 +19,43 @@ namespace WpfApp2
     /// </summary>
     public partial class ColorPickerWindow : Window
     {
-        public ColorPickerWindow()
+        private ColorConverter colorConverter= new ColorConverter();
+        int r;
+        int g;
+        int b;
+        public ColorPickerWindow(Color col)
         {
+            
             InitializeComponent();
+            rectangleColor.Fill = new SolidColorBrush(col);
+            setTextBoxRGB(col);
+            r = col.R;
+            g = col.G;
+            b = col.B;
+        }
+
+        void setTextBoxRGB(Color col)
+        {
+            textBoxR.Text = col.R.ToString();
+            textBoxG.Text = col.G.ToString();
+            textBoxB.Text = col.B.ToString();
+        }
+
+
+
+        private void textBoxR_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void textBoxG_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void textBoxB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
         }
     }
 }

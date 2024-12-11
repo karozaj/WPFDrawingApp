@@ -67,6 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ColorConverter.cs" />
     <Compile Include="ColorPickerWindow.xaml.cs">
       <DependentUpon>ColorPickerWindow.xaml</DependentUpon>
     </Compile>
