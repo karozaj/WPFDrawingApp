@@ -51,6 +51,7 @@
                         <MenuItem x:Name="drawCustomShape2" Header="Plus" Click="drawCustomShape2_Click"/>
                         <MenuItem x:Name="drawCustomShape3" Header="Gwiazda" Click="drawCustomShape3_Click"/>
                         <MenuItem x:Name="drawCustomShape4" Header="Równoległobok" Click="drawCustomShape4_Click"/>
+                        <MenuItem x:Name="drawPolyLine" Header="Krzywa łamana" Click="drawPolyLine_Click"/>
                     </MenuItem>
                 </Menu>
                 <Rectangle x:Name="colorPicker" Height="12" Width="12" Margin="5" Fill="Red" MouseLeftButtonDown="colorPicker_MouseLeftButtonDown"></Rectangle>

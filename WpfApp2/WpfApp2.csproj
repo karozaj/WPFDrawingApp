@@ -70,12 +70,27 @@
     <Compile Include="ColorPickerWindow.xaml.cs">
       <DependentUpon>ColorPickerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DrawingManager.cs" />
+    <Compile Include="DrawingStyles\CircleDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\EllipseDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\FreeDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\IDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\LineDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\LineEditDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\ParallelogramDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\PlusDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\PolygonDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\PolylineDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\SquareDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\StarDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\TriangleDrawingStyle.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawingStyles\PointDrawingStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
