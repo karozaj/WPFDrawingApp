@@ -8,47 +8,54 @@ namespace WpfApp2
 {
     internal class ColorConverter
     {
-        public float[] RGBtoHSV(int r, int g, int b)
+        public double[] RGBtoHSV(uint r, uint g, uint b)
         {
-            float[] hsvArray = new float[3];
-            float rPrime =r/255;
-            float gPrime =g/255;
-            float bPrime =b/255;
-            float[] rgbPrime=new float[3];
+            double[] hsvArray = new double[3];
+            double rPrime = Convert.ToDouble(r)/ 255;
+            double gPrime = Convert.ToDouble(g) / 255;
+            double bPrime = Convert.ToDouble(b) / 255;
+            double[] rgbPrime=new double[3];
             rgbPrime[0] = rPrime;
             rgbPrime[1] = gPrime;
             rgbPrime[2] = bPrime;
-            float Cmax = rgbPrime.Max();
-            float Cmin =rgbPrime.Min(); 
-            float delta=Cmax-Cmin;
+            double Cmax = rgbPrime.Max();
+            double Cmin =rgbPrime.Min();
+            double delta =Cmax-Cmin;
             //hue
-            if (delta == 0.0f)
+            if (delta == 0.0)
             {
-                hsvArray[0] = 0.0f;
+                hsvArray[0] = 0.0;
             }
             else if (Cmax == rPrime)
             {
-                hsvArray[0] = 60 * (((gPrime - bPrime) / delta) % 6);
+                hsvArray[0] = 60.0 * ((((gPrime - bPrime) / delta) % 6));
             }
             else if (Cmax == gPrime)
             {
-                hsvArray[0] = 60 * (((bPrime - rPrime) / delta) + 2);
+                hsvArray[0] = 60.0 * (((bPrime - rPrime) / delta) + 2.0);
             }
             else if (delta == bPrime)
             {
-                hsvArray[0] = 60 * (((rPrime - gPrime) / delta) + 4);
+                hsvArray[0] = 60.0 * (((rPrime - gPrime) / delta) + 4.0);
+            }
+            if (hsvArray[0]<0)
+            {
+                hsvArray[0] += 360.0;
             }
             //saturation
             if(Cmax==0.0f)
             {
-                hsvArray[1] = 0.0f;
+                hsvArray[1] = 0.0;
             }
             else
             {
-                hsvArray[1] = delta / Cmax;
+                hsvArray[1] = delta / Cmax *100.0;
             }
             //VALUE
-            hsvArray[2] = Cmax;
+            hsvArray[2] = Cmax * 100.0;
+            //hsvArray[0] = rPrime;
+            //hsvArray[1] = gPrime;
+            //hsvArray[2] = bPrime;
             return hsvArray;
         }
     }

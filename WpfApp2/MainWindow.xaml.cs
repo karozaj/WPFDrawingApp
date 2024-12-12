@@ -41,9 +41,6 @@ namespace WpfApp2
         DrawingManager drawingManager=new DrawingManager();
         ColorPickerWindow colorPickerWindow;
 
-        Color selectedColor = Color.FromRgb(255, 0, 0);
-        Rectangle pickedLineP3;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -52,12 +49,12 @@ namespace WpfApp2
 
         private void paintSurface_MouseMove(object sender, MouseEventArgs e)
         {
-            drawingManager.MouseMoveAction(sender, e, this, paintSurface, selectedColor);
+            drawingManager.MouseMoveAction(sender, e, this, paintSurface);
         }
 
         private void paintSurface_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            drawingManager.MouseLeftButtonDownAction(sender,e,this,paintSurface,selectedColor);
+            drawingManager.MouseLeftButtonDownAction(sender,e,this,paintSurface);
 
         }
 
@@ -143,16 +140,25 @@ namespace WpfApp2
 
         private void paintSurface_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            drawingManager.MouseRightButtonDownAction(sender, e, this, paintSurface, selectedColor);
+            drawingManager.MouseRightButtonDownAction(sender, e, this, paintSurface);
         }
 
         private void colorPicker_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (colorPickerWindow == null)
+            WindowCollection windows = Application.Current.Windows;
+            foreach (Window window in windows)
             {
-                colorPickerWindow = new ColorPickerWindow(selectedColor);
-                colorPickerWindow.Show();
+                if (window.Equals(colorPickerWindow))
+                    return;
             }
+            colorPickerWindow = new ColorPickerWindow(drawingManager.CurrentColor, switchColor);
+            colorPickerWindow.Show();
+        }
+
+        private void switchColor(Color newColor)
+        {
+            drawingManager.CurrentColor = newColor;
+            colorPicker.Fill=new SolidColorBrush(newColor);
         }
 
     }

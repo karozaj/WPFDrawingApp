@@ -45,17 +45,27 @@ namespace WpfApp2
             }
         }
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        private Color currentColor = Colors.Red;
+        public Color CurrentColor
         {
-            currentDrawingStyle.MouseRightButtonDownAction(sender, e, window, canvas, color);
+            get { return currentColor; }
+            set
+            {
+                currentColor = value;
+            }
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas )
         {
-            currentDrawingStyle.MouseLeftButtonDownAction(sender, e, window, canvas, color);
+            currentDrawingStyle.MouseRightButtonDownAction(sender, e, window, canvas, CurrentColor);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas )
         {
-            currentDrawingStyle.MouseMoveAction(sender, e, window, canvas, color);
+            currentDrawingStyle.MouseLeftButtonDownAction(sender, e, window, canvas, CurrentColor);
+        }
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas)
+        {
+            currentDrawingStyle.MouseMoveAction(sender, e, window, canvas, CurrentColor);
         }
         public void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas)
         {
