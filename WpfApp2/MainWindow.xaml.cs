@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Emgu.CV;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +43,7 @@ namespace WpfApp2
     {
         DrawingManager drawingManager=new DrawingManager();
         ColorPickerWindow colorPickerWindow;
+        OpenFileDialog openFileDialog;
 
         public MainWindow()
         {
@@ -161,5 +165,43 @@ namespace WpfApp2
             colorPicker.Fill=new SolidColorBrush(newColor);
         }
 
+        private void btnAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            openFileDialog=new OpenFileDialog();
+            openFileDialog.Filter= "Image Files(*.BMP; *.JPG; *.GIF)| *.BMP; *.JPG; *.GIF | All files(*.*) | *.*";
+            openFileDialog.RestoreDirectory= true;
+            if(openFileDialog.ShowDialog(this)==true)
+            {
+                // Create the image element.
+                Image simpleImage = new Image();
+                simpleImage.Width = 200;
+                simpleImage.Margin = new Thickness(5);
+
+                // Create source.
+                BitmapImage bi = new BitmapImage();
+                using(var fileStream=File.OpenRead(openFileDialog.FileName))
+                {
+                    bi.BeginInit();
+                    bi.CacheOption = BitmapCacheOption.OnLoad;
+                    bi.StreamSource = fileStream;
+
+                    bi.EndInit();
+                }
+
+                // BitmapImage.UriSource must be in a BeginInit/EndInit block.
+                //bi.BeginInit();
+                //bi.UriSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                //bi.EndInit();
+                //// Set the image source.
+                //simpleImage.Source = bi;
+
+                paintSurface.Width = bi.Width;
+                paintSurface.Height = bi.Height;
+                //paintSurface.Children.Add(simpleImage);
+                ////Canvas.SetTop(simpleImage, 100);
+                ////Canvas.SetLeft(simpleImage, 100);
+                paintSurface.Background = new ImageBrush(bi);
+            }
+        }
     }
 }
