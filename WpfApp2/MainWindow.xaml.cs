@@ -1,4 +1,6 @@
 ﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using System.Drawing;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Interop;
 
 namespace WpfApp2
 {
@@ -42,8 +45,11 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         DrawingManager drawingManager=new DrawingManager();
+        ImageManager imageManager = new ImageManager();
         ColorPickerWindow colorPickerWindow;
         OpenFileDialog openFileDialog;
+        SaveFileDialog saveFileDialog;
+        
 
         public MainWindow()
         {
@@ -159,7 +165,7 @@ namespace WpfApp2
             colorPickerWindow.Show();
         }
 
-        private void switchColor(Color newColor)
+        private void switchColor(System.Windows.Media.Color newColor)
         {
             drawingManager.CurrentColor = newColor;
             colorPicker.Fill=new SolidColorBrush(newColor);
@@ -172,12 +178,7 @@ namespace WpfApp2
             openFileDialog.RestoreDirectory= true;
             if(openFileDialog.ShowDialog(this)==true)
             {
-                // Create the image element.
-                Image simpleImage = new Image();
-                simpleImage.Width = 200;
-                simpleImage.Margin = new Thickness(5);
-
-                // Create source.
+                paintSurface.Children.Clear();
                 BitmapImage bi = new BitmapImage();
                 using(var fileStream=File.OpenRead(openFileDialog.FileName))
                 {
@@ -188,20 +189,46 @@ namespace WpfApp2
                     bi.EndInit();
                 }
 
-                // BitmapImage.UriSource must be in a BeginInit/EndInit block.
-                //bi.BeginInit();
-                //bi.UriSource = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
-                //bi.EndInit();
-                //// Set the image source.
-                //simpleImage.Source = bi;
 
                 paintSurface.Width = bi.Width;
                 paintSurface.Height = bi.Height;
-                //paintSurface.Children.Add(simpleImage);
-                ////Canvas.SetTop(simpleImage, 100);
-                ////Canvas.SetLeft(simpleImage, 100);
                 paintSurface.Background = new ImageBrush(bi);
             }
+        }
+
+
+        private void btnSaveImage_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Trace.WriteLine("test");
+            saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "png|*.png";
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog(this) == true)
+            {
+                WriteableBitmap test = imageManager.CanvasToWriteableBitmap(paintSurface);
+                
+                //endcode as PNG
+                if (saveFileDialog.FileName.EndsWith(".png"))
+                {
+                    BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                    pngEncoder.Frames.Add(BitmapFrame.Create(test));
+
+                    //save to memory stream
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                    pngEncoder.Save(ms);
+                    ms.Close();
+                    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
+                }
+            }
+
+        }
+
+
+
+        private void filterSobel_Click(object sender, RoutedEventArgs e)
+        {
+            imageManager.FilterSobel(paintSurface);
         }
     }
 }

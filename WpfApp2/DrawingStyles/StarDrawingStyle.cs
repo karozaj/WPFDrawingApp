@@ -21,8 +21,8 @@ namespace WpfApp2.DrawingStyles
         public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
         {
             Polygon star = new Polygon();
-            double mouseX = e.GetPosition(window).X;
-            double mouseY = e.GetPosition(window).Y;
+            double mouseX = e.GetPosition(canvas).X;
+            double mouseY = e.GetPosition(canvas).Y;
             double polySize = 40;
 
             Point point1 = new Point(mouseX + polySize * Math.Cos(2 * Math.PI * 0 / 5 + Math.PI / 2), mouseY + polySize * Math.Sin(2 * Math.PI * 0 / 5 + Math.PI / 2));

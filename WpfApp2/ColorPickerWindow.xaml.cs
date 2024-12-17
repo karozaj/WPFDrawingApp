@@ -49,7 +49,7 @@ namespace WpfApp2
 
 
 
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        new private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !e.Text.All(cc => Char.IsNumber(cc));
             base.OnPreviewTextInput(e);

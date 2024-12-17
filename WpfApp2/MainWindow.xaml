@@ -19,7 +19,10 @@
     
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown" MouseRightButtonDown="paintSurface_MouseRightButtonDown">
+            <ScrollViewer.Background>
+                <SolidColorBrush Color="#BEE7E8" Opacity="1"/>
+            </ScrollViewer.Background>
+            <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown" MouseRightButtonDown="paintSurface_MouseRightButtonDown" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Canvas.Background>
                     <SolidColorBrush Color="#BEE7E8" Opacity="1"/>
                 </Canvas.Background>
@@ -57,9 +60,18 @@
                         <MenuItem x:Name="drawPolyLine" Header="Krzywa łamana" Click="drawPolyLine_Click"/>
                     </MenuItem>
                 </Menu>
+                <Menu>
+                    <MenuItem Header="Filtry" Style="{StaticResource bozoButtonStyle}">
+                        <MenuItem x:Name="filterSobel" Header="Filtr Sobel" Click="filterSobel_Click"/>
+                        <MenuItem x:Name="filterCustom" Header="Filtr własny"/>
+                    </MenuItem>
+                </Menu>
                 <Rectangle x:Name="colorPicker" Height="12" Width="12" Margin="5" Fill="Red" MouseLeftButtonDown="colorPicker_MouseLeftButtonDown"></Rectangle>
                 <Button x:Name="btnAddImage"  Style="{StaticResource bozoButtonStyle}" Click="btnAddImage_Click">
                     Dodaj obraz
+                </Button>
+                <Button x:Name="btnSaveImage"  Style="{StaticResource bozoButtonStyle}" Click="btnSaveImage_Click">
+                    Zapisz obraz
                 </Button>
             </ToolBar>
         </ToolBarPanel>

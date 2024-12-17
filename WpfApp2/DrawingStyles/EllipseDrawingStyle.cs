@@ -23,8 +23,8 @@ namespace WpfApp2.DrawingStyles
             Ellipse elip = new Ellipse();
             elip.Height = 80;
             elip.Width = 50;
-            Canvas.SetTop(elip, e.GetPosition(window).Y - elip.Height / 2);
-            Canvas.SetLeft(elip, e.GetPosition(window).X - elip.Width / 2);
+            Canvas.SetTop(elip, e.GetPosition(canvas).Y - elip.Height / 2);
+            Canvas.SetLeft(elip, e.GetPosition(canvas).X - elip.Width / 2);
 
             Brush brushColor = new SolidColorBrush(color);
 

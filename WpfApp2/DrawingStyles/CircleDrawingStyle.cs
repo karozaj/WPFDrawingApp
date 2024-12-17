@@ -22,8 +22,8 @@ namespace WpfApp2.DrawingStyles
             Ellipse circ = new Ellipse();
             circ.Height = 60;
             circ.Width = 60;
-            Canvas.SetTop(circ, e.GetPosition(window).Y - circ.Height / 2);
-            Canvas.SetLeft(circ, e.GetPosition(window).X - circ.Width / 2);
+            Canvas.SetTop(circ, e.GetPosition(canvas).Y - circ.Height / 2);
+            Canvas.SetLeft(circ, e.GetPosition(canvas).X - circ.Width / 2);
 
             Brush brushColor = new SolidColorBrush(color);
 

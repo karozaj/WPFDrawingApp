@@ -41,10 +41,10 @@ namespace WpfApp2.DrawingStyles
             }
             currentLine = new Line();
             currentLine.Stroke = new SolidColorBrush(color);
-            currentLine.X1 = e.GetPosition(window).X;
-            currentLine.Y1 = e.GetPosition(window).Y;
-            currentLine.X2 = e.GetPosition(window).X;
-            currentLine.Y2 = e.GetPosition(window).Y;
+            currentLine.X1 = e.GetPosition(canvas).X;
+            currentLine.Y1 = e.GetPosition(canvas).Y;
+            currentLine.X2 = e.GetPosition(canvas).X;
+            currentLine.Y2 = e.GetPosition(canvas).Y;
             isFirstLinePointSet = true;
             canvas.Children.Add(currentLine);
 
@@ -85,8 +85,8 @@ namespace WpfApp2.DrawingStyles
         {
             if(isFirstLinePointSet==true)
             {
-                currentLine.X2 = e.GetPosition(window).X;
-                currentLine.Y2 = e.GetPosition(window).Y;
+                currentLine.X2 = e.GetPosition(canvas).X;
+                currentLine.Y2 = e.GetPosition(canvas).Y;
             }
         }
         public void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas)

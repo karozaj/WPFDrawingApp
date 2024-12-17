@@ -33,16 +33,16 @@ namespace WpfApp2
                 line.Stroke = new SolidColorBrush(color);
                 line.X1 = currentPoint.X;
                 line.Y1 = currentPoint.Y;
-                line.X2 = e.GetPosition(window).X;
-                line.Y2 = e.GetPosition(window).Y;
+                line.X2 = e.GetPosition(canvas).X;
+                line.Y2 = e.GetPosition(canvas).Y;
 
-                currentPoint = e.GetPosition(window);
+                currentPoint = e.GetPosition(canvas);
 
                 canvas.Children.Add(line);
             }
             else
             {
-                currentPoint=e.GetPosition(window);
+                currentPoint=e.GetPosition(canvas);
             }
         }
         public void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas)

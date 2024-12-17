@@ -22,8 +22,8 @@ namespace WpfApp2
             Ellipse ellipse = new Ellipse();
             ellipse.Width = 6;
             ellipse.Height = 6;
-            Canvas.SetTop(ellipse, e.GetPosition(window).Y - ellipse.Height / 2);
-            Canvas.SetLeft(ellipse, e.GetPosition(window).X - ellipse.Width / 2);
+            Canvas.SetTop(ellipse, e.GetPosition(canvas).Y - ellipse.Height / 2);
+            Canvas.SetLeft(ellipse, e.GetPosition(canvas).X - ellipse.Width / 2);
             ellipse.Fill = new SolidColorBrush(color);
             canvas.Children.Add(ellipse);
         }

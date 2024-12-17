@@ -23,8 +23,8 @@ namespace WpfApp2.DrawingStyles
         }
         public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
         {
-            double mouseX = e.GetPosition(window).X;
-            double mouseY = e.GetPosition(window).Y;
+            double mouseX = e.GetPosition(canvas).X;
+            double mouseY = e.GetPosition(canvas).Y;
 
             if (polyline == null)
             {

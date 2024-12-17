@@ -50,13 +50,13 @@ namespace WpfApp2.DrawingStyles
             {
                 if (lineDrawingStyle.linePoint1Picked == true)
                 {
-                    lineDrawingStyle.pickedLine.X1 = e.GetPosition(window).X;
-                    lineDrawingStyle.pickedLine.Y1 = e.GetPosition(window).Y;
+                    lineDrawingStyle.pickedLine.X1 = e.GetPosition(canvas).X;
+                    lineDrawingStyle.pickedLine.Y1 = e.GetPosition(canvas).Y;
                 }
                 else
                 {
-                    lineDrawingStyle.pickedLine.X2 = e.GetPosition(window).X;
-                    lineDrawingStyle.pickedLine.Y2 = e.GetPosition(window).Y;
+                    lineDrawingStyle.pickedLine.X2 = e.GetPosition(canvas).X;
+                    lineDrawingStyle.pickedLine.Y2 = e.GetPosition(canvas).Y;
                 }
             }
         }

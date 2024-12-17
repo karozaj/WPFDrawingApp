@@ -23,8 +23,8 @@ namespace WpfApp2.DrawingStyles
             rect.Width = 60;
             rect.Height = 60;
 
-            Canvas.SetTop(rect, e.GetPosition(window).Y - rect.Height / 2);
-            Canvas.SetLeft(rect, e.GetPosition(window).X - rect.Width / 2);
+            Canvas.SetTop(rect, e.GetPosition(canvas).Y - rect.Height / 2);
+            Canvas.SetLeft(rect, e.GetPosition(canvas).X - rect.Width / 2);
 
             Brush brushColor = new SolidColorBrush(color);
 
