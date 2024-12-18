@@ -63,7 +63,7 @@
                 <Menu>
                     <MenuItem Header="Filtry" Style="{StaticResource bozoButtonStyle}">
                         <MenuItem x:Name="filterSobel" Header="Filtr Sobel" Click="filterSobel_Click"/>
-                        <MenuItem x:Name="filterCustom" Header="Filtr własny"/>
+                        <MenuItem x:Name="filterCustom" Header="Filtr własny" Click="filterCustom_Click"/>
                     </MenuItem>
                 </Menu>
                 <Rectangle x:Name="colorPicker" Height="12" Width="12" Margin="5" Fill="Red" MouseLeftButtonDown="colorPicker_MouseLeftButtonDown"></Rectangle>

@@ -15,9 +15,9 @@ using Emgu.CV;
 
 namespace WpfApp2
 {
-    internal class ImageManager
+    static class ImageManager
     {
-        public System.Drawing.Bitmap WriteableBitmapToBitmap(WriteableBitmap writeBmp)
+        static public System.Drawing.Bitmap WriteableBitmapToBitmap(WriteableBitmap writeBmp)
         {
             System.Drawing.Bitmap bmp;
             using (MemoryStream outStream = new MemoryStream())
@@ -30,7 +30,7 @@ namespace WpfApp2
             return bmp;
         }
 
-        public WriteableBitmap CanvasToWriteableBitmap(Canvas canvas)
+        static public WriteableBitmap CanvasToWriteableBitmap(Canvas canvas)
         {
             // Save current canvas transform
             Transform transform = canvas.LayoutTransform;
@@ -69,12 +69,20 @@ namespace WpfApp2
 
         }
 
-        public BitmapSource BitmapToBitmapSource(Bitmap bmp)
+        static public BitmapSource BitmapToBitmapSource(Bitmap bmp)
         {
             return Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
 
-        public void FilterSobel(Canvas canvas)
+        //static public Image<Bgr,byte> CanvasToImage(Canvas canvas)
+        //{
+        //    WriteableBitmap wb = CanvasToWriteableBitmap(canvas);
+        //    Bitmap b = WriteableBitmapToBitmap(wb);
+        //    Image<Bgr, byte> img = b.ToImage<Bgr, byte>();
+        //    return img;
+        //}
+
+        static public void FilterSobel(Canvas canvas)
         {
             WriteableBitmap wb = CanvasToWriteableBitmap(canvas);
             Bitmap b = WriteableBitmapToBitmap(wb);

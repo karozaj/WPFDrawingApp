@@ -45,8 +45,8 @@ namespace WpfApp2
     public partial class MainWindow : Window
     {
         DrawingManager drawingManager=new DrawingManager();
-        ImageManager imageManager = new ImageManager();
         ColorPickerWindow colorPickerWindow;
+        FilterWindow filterWindow;
         OpenFileDialog openFileDialog;
         SaveFileDialog saveFileDialog;
         
@@ -205,7 +205,7 @@ namespace WpfApp2
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog(this) == true)
             {
-                WriteableBitmap test = imageManager.CanvasToWriteableBitmap(paintSurface);
+                WriteableBitmap test = ImageManager.CanvasToWriteableBitmap(paintSurface);
                 
                 //endcode as PNG
                 if (saveFileDialog.FileName.EndsWith(".png"))
@@ -228,7 +228,19 @@ namespace WpfApp2
 
         private void filterSobel_Click(object sender, RoutedEventArgs e)
         {
-            imageManager.FilterSobel(paintSurface);
+            ImageManager.FilterSobel(paintSurface);
+        }
+
+        private void filterCustom_Click(object sender, RoutedEventArgs e)
+        {
+            WindowCollection windows = Application.Current.Windows;
+            foreach (Window window in windows)
+            {
+                if (window.Equals(filterWindow))
+                    return;
+            }
+            filterWindow = new FilterWindow(paintSurface);
+            filterWindow.Show();
         }
     }
 }
