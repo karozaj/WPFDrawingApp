@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
-        Title="bozoPaint" Height="450" Width="800">
+        x:Name="MainWin" Title="bozoPaint" Height="450" Width="800">
     <Window.Resources>
         <Style x:Name="bozoButtonStyle" x:Key="bozoButtonStyle" TargetType="Control">
             <Setter Property="FontFamily" Value="Courier New"/>
@@ -22,9 +22,10 @@
             <ScrollViewer.Background>
                 <SolidColorBrush Color="#BEE7E8" Opacity="1"/>
             </ScrollViewer.Background>
-            <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown" MouseRightButtonDown="paintSurface_MouseRightButtonDown" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Canvas x:Name="paintSurface" MouseMove="paintSurface_MouseMove" MouseLeftButtonDown="paintSurface_MouseLeftButtonDown" MouseDown="paintSurface_MouseDown" MouseRightButtonDown="paintSurface_MouseRightButtonDown"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="{Binding ElementName=MainWin, Path=ActualWidth}" Height="{Binding ElementName=MainWin, Path=ActualHeight}">
                 <Canvas.Background>
-                    <SolidColorBrush Color="#BEE7E8" Opacity="1"/>
+                    <SolidColorBrush Color="Transparent" Opacity="1"/>
                 </Canvas.Background>
                 <ToolBarPanel Height="434" Width="800"/>
             </Canvas>

@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Windows.Interop;
 using Emgu.CV.Structure;
 using Emgu.CV;
+using Microsoft.Win32;
 
 namespace WpfApp2
 {
@@ -91,6 +92,37 @@ namespace WpfApp2
             //paintSurface.Background = new ImageBrush(img.ToBitmap());
             Bitmap b2 = img.ToBitmap();
             canvas.Background = new ImageBrush(BitmapToBitmapSource(b2));
+        }
+
+        static public void SaveToFile(string filename, Canvas surface)
+        {
+            WriteableBitmap img = ImageManager.CanvasToWriteableBitmap(surface);
+
+            //encode as PNG
+            if (filename.EndsWith(".png"))
+            {
+                BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                pngEncoder.Frames.Add(BitmapFrame.Create(img));
+
+                //save to memory stream
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                pngEncoder.Save(ms);
+                ms.Close();
+                System.IO.File.WriteAllBytes(filename, ms.ToArray());
+            }
+            else if (filename.EndsWith(".jpg") || filename.EndsWith(".jpeg"))
+            {
+                BitmapEncoder jpgEncoder = new JpegBitmapEncoder();
+                jpgEncoder.Frames.Add(BitmapFrame.Create(img));
+
+                //save to memory stream
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                jpgEncoder.Save(ms);
+                ms.Close();
+                System.IO.File.WriteAllBytes(filename, ms.ToArray());
+            }
         }
     }
 }

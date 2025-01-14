@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Interop;
+using System.Xml.Linq;
 
 namespace WpfApp2
 {
@@ -193,33 +194,55 @@ namespace WpfApp2
                 paintSurface.Width = bi.Width;
                 paintSurface.Height = bi.Height;
                 paintSurface.Background = new ImageBrush(bi);
+                this.SizeToContent = SizeToContent.WidthAndHeight;
             }
         }
 
 
         private void btnSaveImage_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Trace.WriteLine("test");
+            //saveFileDialog = new SaveFileDialog();
+            //saveFileDialog.Filter = "png|*.png|jpg|*.jpg";
+            //saveFileDialog.RestoreDirectory = true;
+            //if (saveFileDialog.ShowDialog(this) == true)
+            //{
+            //    SaveToPngFile(new Uri(saveFileDialog.FileName), paintSurface);
+            //}
+
+            //System.Diagnostics.Trace.WriteLine("test");
             saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "png|*.png";
+            saveFileDialog.Filter = "png|*.png|jpg|*.jpg";
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog(this) == true)
             {
-                WriteableBitmap test = ImageManager.CanvasToWriteableBitmap(paintSurface);
-                
-                //endcode as PNG
-                if (saveFileDialog.FileName.EndsWith(".png"))
-                {
-                    BitmapEncoder pngEncoder = new PngBitmapEncoder();
-                    pngEncoder.Frames.Add(BitmapFrame.Create(test));
+                ImageManager.SaveToFile(saveFileDialog.FileName, paintSurface);
+                //WriteableBitmap img = ImageManager.CanvasToWriteableBitmap(paintSurface);
 
-                    //save to memory stream
-                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                ////encode as PNG
+                //if (saveFileDialog.FileName.EndsWith(".png"))
+                //{
+                //    BitmapEncoder pngEncoder = new PngBitmapEncoder();
+                //    pngEncoder.Frames.Add(BitmapFrame.Create(img));
 
-                    pngEncoder.Save(ms);
-                    ms.Close();
-                    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
-                }
+                //    //save to memory stream
+                //    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                //    pngEncoder.Save(ms);
+                //    ms.Close();
+                //    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
+                //}
+                //else if (saveFileDialog.FileName.EndsWith(".jpg") || saveFileDialog.FileName.EndsWith(".jpeg"))
+                //{
+                //    BitmapEncoder jpgEncoder = new JpegBitmapEncoder();
+                //    jpgEncoder.Frames.Add(BitmapFrame.Create(img));
+
+                //    //save to memory stream
+                //    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+
+                //    jpgEncoder.Save(ms);
+                //    ms.Close();
+                //    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
+                //}
             }
 
         }
@@ -242,5 +265,35 @@ namespace WpfApp2
             filterWindow = new FilterWindow(paintSurface);
             filterWindow.Show();
         }
+
+        //public void SaveToPngFile(Uri path, Canvas surface)
+        //{
+        //    if (path == null) return;
+        //    Transform transform = surface.LayoutTransform;
+        //    surface.LayoutTransform = null;
+
+        //    System.Windows.Size size = new System.Windows.Size(surface.ActualWidth, ActualHeight);
+        //    surface.Measure(size);
+        //    surface.Arrange(new Rect(size));
+        //    RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
+        //        (int)size.Width,
+        //        (int)size.Height,
+        //        96d,
+        //        96d,
+        //        PixelFormats.Pbgra32
+        //        );
+
+        //    renderTargetBitmap.Render(surface);
+
+        //    using(FileStream outStream=new FileStream(path.LocalPath,FileMode.Create))
+        //    {
+        //        PngBitmapEncoder encoder=new PngBitmapEncoder();
+        //        encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
+        //        encoder.Save(outStream);
+        //    }
+
+        //    surface.LayoutTransform = transform;
+        //}
     }
 }
+
