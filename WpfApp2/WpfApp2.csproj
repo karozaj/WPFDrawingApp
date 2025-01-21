@@ -101,6 +101,7 @@
     <Compile Include="DrawingManager.cs" />
     <Compile Include="DrawingStyles\CircleDrawingStyle.cs" />
     <Compile Include="DrawingStyles\EllipseDrawingStyle.cs" />
+    <Compile Include="DrawingStyles\EraserDrawingStyle.cs" />
     <Compile Include="DrawingStyles\FreeDrawingStyle.cs" />
     <Compile Include="DrawingStyles\IDrawingStyle.cs" />
     <Compile Include="DrawingStyles\LineDrawingStyle.cs" />

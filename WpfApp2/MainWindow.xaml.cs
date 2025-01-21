@@ -43,6 +43,8 @@ namespace WpfApp2
     // 17-gwiazda
     // 18-rownoleglobok
     // 19-krzywa lamana
+    //
+    //5-gumka
     public partial class MainWindow : Window
     {
         DrawingManager drawingManager=new DrawingManager();
@@ -50,7 +52,8 @@ namespace WpfApp2
         FilterWindow filterWindow;
         OpenFileDialog openFileDialog;
         SaveFileDialog saveFileDialog;
-        
+
+        public int DrawingStyle = 0;
 
         public MainWindow()
         {
@@ -65,7 +68,22 @@ namespace WpfApp2
 
         private void paintSurface_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //if (DrawingStyle == 5)
+            //{
+            //    var clickedElement = e.Source as FrameworkElement;
+            //    if (clickedElement != null)
+            //    {
+            //        if (paintSurface.Children.Contains(clickedElement))
+            //        {
+            //            paintSurface.Children.Remove(clickedElement);
+            //        }
+
+            //    }
+            //    return;
+            //}
             drawingManager.MouseLeftButtonDownAction(sender,e,this,paintSurface);
+
+
 
         }
 
@@ -91,6 +109,13 @@ namespace WpfApp2
         }
 
 
+        private void btnEraser_Click(object sender, RoutedEventArgs e)
+        {//erase
+            //drawStyle = 5;
+            drawingManager.DrawingStyle = 5;
+        }
+       
+
         private void drawSegment_Click(object sender, RoutedEventArgs e)
         {//draw line
             drawingManager.DrawingStyle = 3;
@@ -99,8 +124,7 @@ namespace WpfApp2
         private void editSegment_Click(object sender, RoutedEventArgs e)
         {//edit line
             drawingManager.DrawingStyle = 4;
-            //drawStyle = 4;
-            //isFirstLinePointSet = false;
+
         }
 
         private void drawRectangle_Click(object sender, RoutedEventArgs e)
@@ -201,48 +225,12 @@ namespace WpfApp2
 
         private void btnSaveImage_Click(object sender, RoutedEventArgs e)
         {
-            //saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.Filter = "png|*.png|jpg|*.jpg";
-            //saveFileDialog.RestoreDirectory = true;
-            //if (saveFileDialog.ShowDialog(this) == true)
-            //{
-            //    SaveToPngFile(new Uri(saveFileDialog.FileName), paintSurface);
-            //}
-
-            //System.Diagnostics.Trace.WriteLine("test");
             saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "png|*.png|jpg|*.jpg";
             saveFileDialog.RestoreDirectory = true;
             if (saveFileDialog.ShowDialog(this) == true)
             {
                 ImageManager.SaveToFile(saveFileDialog.FileName, paintSurface);
-                //WriteableBitmap img = ImageManager.CanvasToWriteableBitmap(paintSurface);
-
-                ////encode as PNG
-                //if (saveFileDialog.FileName.EndsWith(".png"))
-                //{
-                //    BitmapEncoder pngEncoder = new PngBitmapEncoder();
-                //    pngEncoder.Frames.Add(BitmapFrame.Create(img));
-
-                //    //save to memory stream
-                //    System.IO.MemoryStream ms = new System.IO.MemoryStream();
-
-                //    pngEncoder.Save(ms);
-                //    ms.Close();
-                //    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
-                //}
-                //else if (saveFileDialog.FileName.EndsWith(".jpg") || saveFileDialog.FileName.EndsWith(".jpeg"))
-                //{
-                //    BitmapEncoder jpgEncoder = new JpegBitmapEncoder();
-                //    jpgEncoder.Frames.Add(BitmapFrame.Create(img));
-
-                //    //save to memory stream
-                //    System.IO.MemoryStream ms = new System.IO.MemoryStream();
-
-                //    jpgEncoder.Save(ms);
-                //    ms.Close();
-                //    System.IO.File.WriteAllBytes(saveFileDialog.FileName, ms.ToArray());
-                //}
             }
 
         }
@@ -265,35 +253,6 @@ namespace WpfApp2
             filterWindow = new FilterWindow(paintSurface);
             filterWindow.Show();
         }
-
-        //public void SaveToPngFile(Uri path, Canvas surface)
-        //{
-        //    if (path == null) return;
-        //    Transform transform = surface.LayoutTransform;
-        //    surface.LayoutTransform = null;
-
-        //    System.Windows.Size size = new System.Windows.Size(surface.ActualWidth, ActualHeight);
-        //    surface.Measure(size);
-        //    surface.Arrange(new Rect(size));
-        //    RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap(
-        //        (int)size.Width,
-        //        (int)size.Height,
-        //        96d,
-        //        96d,
-        //        PixelFormats.Pbgra32
-        //        );
-
-        //    renderTargetBitmap.Render(surface);
-
-        //    using(FileStream outStream=new FileStream(path.LocalPath,FileMode.Create))
-        //    {
-        //        PngBitmapEncoder encoder=new PngBitmapEncoder();
-        //        encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
-        //        encoder.Save(outStream);
-        //    }
-
-        //    surface.LayoutTransform = transform;
-        //}
     }
 }
 

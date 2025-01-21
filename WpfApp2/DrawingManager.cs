@@ -20,6 +20,7 @@ namespace WpfApp2
             {2, new PointDrawingStyle() },
             {3, lineDrawingStyle },
             {4, new LineEditDrawingStyle(lineDrawingStyle) },
+            {5, new EraserDrawingStyle() },
             {11,new SquareDrawingStyle() },
             {12,new PolygonDrawingStyle() },
             {13,new EllipseDrawingStyle() },
