@@ -16,26 +16,26 @@ namespace WpfApp2
         public int styleID { get; } = 1;
         Point currentPoint = new Point();
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
 
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Line line = new Line();
                 line.Stroke = new SolidColorBrush(color);
+                line.StrokeThickness = thickness;
                 line.X1 = currentPoint.X;
                 line.Y1 = currentPoint.Y;
                 line.X2 = e.GetPosition(canvas).X;
                 line.Y2 = e.GetPosition(canvas).Y;
-
                 currentPoint = e.GetPosition(canvas);
 
                 canvas.Children.Add(line);

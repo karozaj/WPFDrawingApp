@@ -56,17 +56,28 @@ namespace WpfApp2
             }
         }
 
+        private int thickness = 1;
+        public int Thickness
+        {
+            get { return thickness; }
+            set
+            {
+                if(value>0 && value<=1000)
+                thickness = value;
+            }
+        }
+
         public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas )
         {
-            currentDrawingStyle.MouseRightButtonDownAction(sender, e, window, canvas, CurrentColor);
+            currentDrawingStyle.MouseRightButtonDownAction(sender, e, window, canvas, CurrentColor, Thickness);
         }
         public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas )
         {
-            currentDrawingStyle.MouseLeftButtonDownAction(sender, e, window, canvas, CurrentColor);
+            currentDrawingStyle.MouseLeftButtonDownAction(sender, e, window, canvas, CurrentColor, Thickness);
         }
         public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas)
         {
-            currentDrawingStyle.MouseMoveAction(sender, e, window, canvas, CurrentColor);
+            currentDrawingStyle.MouseMoveAction(sender, e, window, canvas, CurrentColor, Thickness);
         }
         public void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas)
         {

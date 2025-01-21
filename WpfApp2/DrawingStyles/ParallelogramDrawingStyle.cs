@@ -14,11 +14,11 @@ namespace WpfApp2.DrawingStyles
     internal class ParallelogramDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 18;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Polygon parallelogram = new Polygon();
             double mouseX = e.GetPosition(canvas).X;
@@ -39,9 +39,10 @@ namespace WpfApp2.DrawingStyles
 
             Brush brushColor = new SolidColorBrush(color);
             parallelogram.Stroke = brushColor;
+            parallelogram.StrokeThickness= thickness;
             canvas.Children.Add(parallelogram);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

@@ -25,7 +25,7 @@ namespace WpfApp2.DrawingStyles
         public Ellipse pickedLineP1;
         public Ellipse pickedLineP2;
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if (isFirstLinePointSet == true)
             {
@@ -33,7 +33,7 @@ namespace WpfApp2.DrawingStyles
                 currentLine= null;
             }
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if(currentLine!=null)
             {
@@ -41,6 +41,7 @@ namespace WpfApp2.DrawingStyles
             }
             currentLine = new Line();
             currentLine.Stroke = new SolidColorBrush(color);
+            currentLine.StrokeThickness = thickness;
             currentLine.X1 = e.GetPosition(canvas).X;
             currentLine.Y1 = e.GetPosition(canvas).Y;
             currentLine.X2 = e.GetPosition(canvas).X;
@@ -81,7 +82,7 @@ namespace WpfApp2.DrawingStyles
 
         }
 
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if(isFirstLinePointSet==true)
             {

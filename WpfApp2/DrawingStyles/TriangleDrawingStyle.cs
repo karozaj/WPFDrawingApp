@@ -14,11 +14,11 @@ namespace WpfApp2.DrawingStyles
     internal class TriangleDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 15;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Polygon triangle = new Polygon();
             double mouseX = e.GetPosition(canvas).X;
@@ -37,9 +37,10 @@ namespace WpfApp2.DrawingStyles
 
             Brush brushColor = new SolidColorBrush(color);
             triangle.Stroke = brushColor;
+            triangle.StrokeThickness=thickness;
             canvas.Children.Add(triangle);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

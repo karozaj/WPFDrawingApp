@@ -15,11 +15,11 @@ namespace WpfApp2.DrawingStyles
     {
         public int styleID { get; } = 5;
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             var clickedElement = e.Source as FrameworkElement;
             if (clickedElement != null)
@@ -31,7 +31,7 @@ namespace WpfApp2.DrawingStyles
 
             }
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if(System.Windows.Input.Mouse.LeftButton==MouseButtonState.Pressed)
             {

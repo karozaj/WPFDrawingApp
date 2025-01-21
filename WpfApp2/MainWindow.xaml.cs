@@ -253,6 +253,16 @@ namespace WpfApp2
             filterWindow = new FilterWindow(paintSurface);
             filterWindow.Show();
         }
+
+        private void increaseThickness_Click(object sender, RoutedEventArgs e)
+        {
+            drawingManager.Thickness += 1;
+        }
+
+        private void decreaseThickness_Click(object sender, RoutedEventArgs e)
+        {
+            drawingManager.Thickness -= 1;
+        }
     }
 }
 

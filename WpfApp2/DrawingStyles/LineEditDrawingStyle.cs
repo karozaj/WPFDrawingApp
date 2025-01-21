@@ -20,7 +20,7 @@ namespace WpfApp2.DrawingStyles
 
         public int styleID { get; } = 4;
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if (lineDrawingStyle.linePointPicked)
             {
@@ -29,7 +29,7 @@ namespace WpfApp2.DrawingStyles
                 lineDrawingStyle.pickedLine = null;
             }
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if (lineDrawingStyle.lineEditEnabled == false)
             {
@@ -44,7 +44,7 @@ namespace WpfApp2.DrawingStyles
             //}
         }
 
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             if (lineDrawingStyle.linePointPicked)
             {

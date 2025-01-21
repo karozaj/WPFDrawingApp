@@ -13,21 +13,21 @@ namespace WpfApp2
     internal class PointDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 2;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Ellipse ellipse = new Ellipse();
-            ellipse.Width = 6;
-            ellipse.Height = 6;
+            ellipse.Width = thickness;
+            ellipse.Height = thickness;
             Canvas.SetTop(ellipse, e.GetPosition(canvas).Y - ellipse.Height / 2);
             Canvas.SetLeft(ellipse, e.GetPosition(canvas).X - ellipse.Width / 2);
             ellipse.Fill = new SolidColorBrush(color);
             canvas.Children.Add(ellipse);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

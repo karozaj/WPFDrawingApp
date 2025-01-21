@@ -26,7 +26,7 @@ namespace WpfApp2
     public partial class FilterWindow : Window
     {
         Canvas canvas;
-        string regexPattern = @"[-]?[0123456789]+";
+        //string regexPattern = @"[-]?[0123456789]+";
 
         public FilterWindow(Canvas canv)
         {

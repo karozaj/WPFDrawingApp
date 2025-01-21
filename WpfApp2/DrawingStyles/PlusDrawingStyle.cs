@@ -14,11 +14,11 @@ namespace WpfApp2.DrawingStyles
     internal class PlusDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 16;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Polygon plus = new Polygon();
             double mouseX = e.GetPosition(canvas).X;
@@ -60,9 +60,10 @@ namespace WpfApp2.DrawingStyles
 
             Brush brushColor = new SolidColorBrush(color);
             plus.Stroke = brushColor;
+            plus.StrokeThickness = thickness;
             canvas.Children.Add(plus);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

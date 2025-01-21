@@ -17,11 +17,11 @@ namespace WpfApp2.DrawingStyles
         public int styleID { get; } = 19;
         Polyline polyline;
 
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             polyline = null;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             double mouseX = e.GetPosition(canvas).X;
             double mouseY = e.GetPosition(canvas).Y;
@@ -38,9 +38,10 @@ namespace WpfApp2.DrawingStyles
             polyline.Points.Add(point);
             Brush brushColor = new SolidColorBrush(color);
             polyline.Stroke = brushColor;
+            polyline.StrokeThickness = thickness;
 
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

@@ -13,9 +13,9 @@ namespace WpfApp2
     {
         //interface for drawing styles 
         int styleID {  get; }
-        void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color);
-        void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color);
-        void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas,Color color);
+        void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness);
+        void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness);
+        void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas,Color color, int thickness);
         void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas);
         void ExitDrawingStyle();
     }

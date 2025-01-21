@@ -13,11 +13,11 @@ namespace WpfApp2.DrawingStyles
     internal class CircleDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 14;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Ellipse circ = new Ellipse();
             circ.Height = 60;
@@ -26,11 +26,12 @@ namespace WpfApp2.DrawingStyles
             Canvas.SetLeft(circ, e.GetPosition(canvas).X - circ.Width / 2);
 
             Brush brushColor = new SolidColorBrush(color);
+            circ.StrokeThickness = thickness;
 
             circ.Stroke = brushColor;
             canvas.Children.Add(circ);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

@@ -45,6 +45,14 @@
                 <Button x:Name="btnEraser" Click="btnEraser_Click" Style="{StaticResource bozoButtonStyle}">
                     Gumka
                 </Button>
+
+                <Menu>
+                    <MenuItem Header="Grubość" Style="{StaticResource bozoButtonStyle}">
+                        <MenuItem x:Name="increaseThickness" Header="+" Click="increaseThickness_Click"/>
+                        <MenuItem x:Name="decreaseThickness" Header="-" Click="decreaseThickness_Click"/>
+                    </MenuItem>
+                </Menu>
+
                 <Menu>
                     <MenuItem Header="Odcinki" Style="{StaticResource bozoButtonStyle}">
                         <MenuItem x:Name="drawSegment" Header="Rysuj odcinek" Click="drawSegment_Click"/>

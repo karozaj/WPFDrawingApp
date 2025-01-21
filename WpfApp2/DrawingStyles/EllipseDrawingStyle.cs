@@ -14,11 +14,11 @@ namespace WpfApp2.DrawingStyles
     internal class EllipseDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 13;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Ellipse elip = new Ellipse();
             elip.Height = 80;
@@ -27,11 +27,12 @@ namespace WpfApp2.DrawingStyles
             Canvas.SetLeft(elip, e.GetPosition(canvas).X - elip.Width / 2);
 
             Brush brushColor = new SolidColorBrush(color);
+            elip.StrokeThickness = thickness;
 
             elip.Stroke = brushColor;
             canvas.Children.Add(elip);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }

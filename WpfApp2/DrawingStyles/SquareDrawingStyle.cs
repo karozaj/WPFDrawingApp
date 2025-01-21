@@ -13,11 +13,11 @@ namespace WpfApp2.DrawingStyles
     internal class SquareDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 11;
-        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
-        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             Rectangle rect = new Rectangle();
             rect.Width = 60;
@@ -29,9 +29,10 @@ namespace WpfApp2.DrawingStyles
             Brush brushColor = new SolidColorBrush(color);
 
             rect.Stroke = brushColor;
+            rect.StrokeThickness = thickness;
             canvas.Children.Add(rect);
         }
-        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color)
+        public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
