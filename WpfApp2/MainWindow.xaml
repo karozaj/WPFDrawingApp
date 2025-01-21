@@ -34,13 +34,13 @@
         <ToolBarPanel>
             <ToolBar VerticalAlignment="Top" Margin="0,-1,0,0" Background="#7D8CC4">
                 <Button x:Name="btnDraw" Click="btnDraw_Click" Style="{StaticResource bozoButtonStyle}">
-                    Rysuj dowolnie
+                    Ołówek
                 </Button>
                 <Button x:Name="btnPoint" Click="btnPoint_Click" Style="{StaticResource bozoButtonStyle}">
-                    Rysuj punkty
+                    Punkty
                 </Button>
                 <Button x:Name="btnLine" Click="btnLine_Click" Style="{StaticResource bozoButtonStyle}">
-                    Rysuj linie
+                    Linie
                 </Button>
                 <Button x:Name="btnEraser" Click="btnEraser_Click" Style="{StaticResource bozoButtonStyle}">
                     Gumka
@@ -75,6 +75,7 @@
                 <Menu>
                     <MenuItem Header="Filtry" Style="{StaticResource bozoButtonStyle}">
                         <MenuItem x:Name="filterSobel" Header="Filtr Sobel" Click="filterSobel_Click"/>
+                        <MenuItem x:Name="filterGauss" Header="Rozmycie Gaussa" Click="filterGauss_Click"/>
                         <MenuItem x:Name="filterCustom" Header="Filtr własny" Click="filterCustom_Click"/>
                     </MenuItem>
                 </Menu>

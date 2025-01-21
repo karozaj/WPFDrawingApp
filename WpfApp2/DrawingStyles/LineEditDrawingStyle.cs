@@ -35,13 +35,6 @@ namespace WpfApp2.DrawingStyles
             {
                 lineDrawingStyle.lineEditEnabled = true;
             }
-
-            //if (lineDrawingStyle.linePointPicked)
-            //{
-            //    lineDrawingStyle.linePointPicked = false;
-            //    lineDrawingStyle.linePoint1Picked = false;
-            //    lineDrawingStyle.pickedLine = null;
-            //}
         }
 
         public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)

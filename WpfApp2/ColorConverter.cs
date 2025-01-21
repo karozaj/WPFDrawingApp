@@ -53,9 +53,6 @@ namespace WpfApp2
             }
             //VALUE
             hsvArray[2] = Cmax * 100.0;
-            //hsvArray[0] = rPrime;
-            //hsvArray[1] = gPrime;
-            //hsvArray[2] = bPrime;
             return hsvArray;
         }
     }

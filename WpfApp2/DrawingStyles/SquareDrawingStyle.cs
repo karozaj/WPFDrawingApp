@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -13,18 +14,23 @@ namespace WpfApp2.DrawingStyles
     internal class SquareDrawingStyle:IDrawingStyle
     {
         public int styleID { get; } = 11;
+
+        private Rectangle rect;
+        private Point topLeftPos;
+
         public void MouseRightButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
             return;
         }
         public void MouseLeftButtonDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
-            Rectangle rect = new Rectangle();
-            rect.Width = 60;
-            rect.Height = 60;
+            rect = new Rectangle();
+            rect.Width = 5;
+            rect.Height = 5;
 
-            Canvas.SetTop(rect, e.GetPosition(canvas).Y - rect.Height / 2);
-            Canvas.SetLeft(rect, e.GetPosition(canvas).X - rect.Width / 2);
+            topLeftPos = e.GetPosition(canvas);
+            Canvas.SetTop(rect, e.GetPosition(canvas).Y);
+            Canvas.SetLeft(rect, e.GetPosition(canvas).X);
 
             Brush brushColor = new SolidColorBrush(color);
 
@@ -34,7 +40,37 @@ namespace WpfApp2.DrawingStyles
         }
         public void MouseMoveAction(object sender, MouseEventArgs e, MainWindow window, Canvas canvas, Color color, int thickness)
         {
-            return;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (rect != null)
+                {
+                    double newH = topLeftPos.Y - e.GetPosition(canvas).Y;
+                    double newW = topLeftPos.X - e.GetPosition(canvas).X;
+                    rect.Height = Math.Abs(newH);
+                    rect.Width = Math.Abs(newW);
+                    if (newW >= 0)
+                    { 
+                        Canvas.SetLeft(rect, e.GetPosition(canvas).X);
+                    }
+                    else
+                    {
+                        Canvas.SetRight(rect, e.GetPosition(canvas).X);
+                    }
+                    if (newH >= 0)
+                    {
+                        Canvas.SetTop(rect, e.GetPosition(canvas).Y);
+                    }
+                    else
+                    {
+                        Canvas.SetBottom(rect, e.GetPosition(canvas).Y);
+                    }
+                }
+            }
+            else
+            {
+                rect = null;
+            }
+
         }
         public void MouseDownAction(object sender, MouseButtonEventArgs e, MainWindow window, Canvas canvas)
         {
@@ -42,6 +78,7 @@ namespace WpfApp2.DrawingStyles
         }
         public void ExitDrawingStyle()
         {
+            rect = null;
             return;
         }
     }

@@ -1,25 +1,9 @@
-﻿using Emgu.CV;
-using Emgu.CV.Structure;
-using System.Drawing;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
+﻿using Microsoft.Win32;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Interop;
-using System.Xml.Linq;
 
 namespace WpfApp2
 {
@@ -68,23 +52,7 @@ namespace WpfApp2
 
         private void paintSurface_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //if (DrawingStyle == 5)
-            //{
-            //    var clickedElement = e.Source as FrameworkElement;
-            //    if (clickedElement != null)
-            //    {
-            //        if (paintSurface.Children.Contains(clickedElement))
-            //        {
-            //            paintSurface.Children.Remove(clickedElement);
-            //        }
-
-            //    }
-            //    return;
-            //}
             drawingManager.MouseLeftButtonDownAction(sender,e,this,paintSurface);
-
-
-
         }
 
         private void paintSurface_MouseDown(object sender, MouseButtonEventArgs e)
@@ -240,6 +208,11 @@ namespace WpfApp2
         private void filterSobel_Click(object sender, RoutedEventArgs e)
         {
             ImageManager.FilterSobel(paintSurface);
+        }
+
+        private void filterGauss_Click(object sender, RoutedEventArgs e)
+        {
+            ImageManager.FilterGaussian(paintSurface);
         }
 
         private void filterCustom_Click(object sender, RoutedEventArgs e)

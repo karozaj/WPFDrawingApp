@@ -62,10 +62,7 @@ namespace WpfApp2
             canvas.Height = wbmp.Height;
             canvas.Background = new ImageBrush(wbmp);
 
-            //canvas.LayoutTransform = transform;
-            //create and return a new WriteableBitmap using the RenderTargetBitmap
-            //WriteableBitmap test= new WriteableBitmap(renderBitmap);
-            //paintSurface.Background = new ImageBrush(test);
+
             return wbmp;
 
         }
@@ -75,13 +72,6 @@ namespace WpfApp2
             return Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
 
-        //static public Image<Bgr,byte> CanvasToImage(Canvas canvas)
-        //{
-        //    WriteableBitmap wb = CanvasToWriteableBitmap(canvas);
-        //    Bitmap b = WriteableBitmapToBitmap(wb);
-        //    Image<Bgr, byte> img = b.ToImage<Bgr, byte>();
-        //    return img;
-        //}
 
         static public void FilterSobel(Canvas canvas)
         {
@@ -89,9 +79,19 @@ namespace WpfApp2
             Bitmap b = WriteableBitmapToBitmap(wb);
             Image<Bgr, byte> img = b.ToImage<Bgr, byte>();
             CvInvoke.Sobel(img, img, Emgu.CV.CvEnum.DepthType.Default, 1, 0);
-            //paintSurface.Background = new ImageBrush(img.ToBitmap());
             Bitmap b2 = img.ToBitmap();
             canvas.Background = new ImageBrush(BitmapToBitmapSource(b2));
+
+        }
+        static public void FilterGaussian(Canvas canvas)
+        {
+            WriteableBitmap wb = CanvasToWriteableBitmap(canvas);
+            Bitmap b = WriteableBitmapToBitmap(wb);
+            Image<Bgr, byte> img = b.ToImage<Bgr, byte>();
+            CvInvoke.GaussianBlur(img, img, new System.Drawing.Size(5,5),10);
+            Bitmap b2 = img.ToBitmap();
+            canvas.Background = new ImageBrush(BitmapToBitmapSource(b2));
+
         }
 
         static public void SaveToFile(string filename, Canvas surface)
